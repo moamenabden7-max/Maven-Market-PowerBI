@@ -23,7 +23,7 @@ The working source files include sales data for 2017 and 2018, returns, products
 
 ## How to open
 
-The `.pbix` report is prepared for this project and will be added after a public-release review. Once available, open it with Power BI Desktop; refreshing may require updated source settings.
+Download `maven market.pbix` and open it with Power BI Desktop. The report contains an embedded data model; refreshing may require updated source settings.
 
 ## Tools
 
@@ -32,6 +32,7 @@ Power BI · Power Query · DAX · Excel/CSV
 ## Repository contents
 
 - `README.md` — project summary and report guide.
+- `maven market.pbix` — Power BI report and embedded model.
 
 A dashboard screenshot can be added once exported from Power BI Desktop.
 
