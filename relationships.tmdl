@@ -1,0 +1,77 @@
+relationship 93d2f7a1-cd11-46bf-9f0b-fa60ddc7a001
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Customers.birthdate
+	toColumn: LocalDateTable_260d44de-2fb9-4f82-8a63-0af03ef09a22.Date
+
+relationship c1083b50-2e2b-4d76-9951-3d10539c58fd
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Customers.acct_open_date
+	toColumn: LocalDateTable_881d2900-1b30-49a4-892d-f05803a771cd.Date
+
+relationship 4298ee57-cbad-4a2f-ad10-ed187184e565
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Stores.first_opened_date
+	toColumn: LocalDateTable_55fc1391-006e-4a69-bdcc-e6a248ffa7f7.Date
+
+relationship 3b2f2b82-996a-466a-9e22-88065a71a133
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Stores.last_remodel_date
+	toColumn: LocalDateTable_9c04c3aa-e38f-43b5-904b-de0caec04ba0.Date
+
+relationship daa13ba9-92fc-4266-9c75-e35adb6cbeb4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Calendar.'Start of Month'
+	toColumn: LocalDateTable_5919b417-8207-4521-ba54-02995288226a.Date
+
+relationship 4f828db9-9f8c-4394-9710-97da2b09a4e2
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Calendar.'Start of Week'
+	toColumn: LocalDateTable_daa6c4d7-45dc-445c-bacb-bdaa98a031cd.Date
+
+relationship 59c600e1-7511-429b-99c1-3f9c564d502c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Calendar.'End of Year'
+	toColumn: LocalDateTable_8aa2f076-794d-4fc6-bcaf-c8245e99b3a8.Date
+
+relationship 0748a207-a985-f8dd-df0c-877e5925e9a2
+	fromColumn: Returns_1997-1998.product_id
+	toColumn: Products.product_id
+
+relationship fcae6bf9-3e9d-4021-b877-2bcb80975c3a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Calendar.date
+	toColumn: LocalDateTable_55d94fe2-d372-4fb7-a2a5-0b61846ea452.Date
+
+relationship 4d0bdea1-77bb-5515-52d6-edf42b9ac38e
+	fromColumn: Transection.product_id
+	toColumn: Products.product_id
+
+relationship d2e437e1-8087-810a-b159-c365cd786bfb
+	fromColumn: Stores.region_id
+	toColumn: Regions.region_id
+
+relationship d7603045-5bd9-dfb3-aa97-3f4ace945b4e
+	fromColumn: Transection.transaction_date
+	toColumn: Calendar.date
+
+relationship 08b7ebc8-8114-b885-4821-109f240a5ce3
+	fromColumn: Transection.customer_id
+	toColumn: Customers.customer_id
+
+relationship 57907499-b113-1adf-9adc-287e66498828
+	fromColumn: Transection.store_id
+	toColumn: Stores.store_id
+
+relationship 77f24bb7-fec7-0555-eeb0-e8bda31cca61
+	fromColumn: Returns_1997-1998.return_date
+	toColumn: Calendar.date
+
+relationship b4f3d1a3-fa59-8210-11d9-fb09710a16db
+	fromColumn: Returns_1997-1998.store_id
+	toColumn: Stores.store_id
+
+relationship ed255ce9-4377-f92e-a6e4-4f78e625378e
+	isActive: false
+	fromColumn: Transection.stock_date
+	toColumn: Calendar.date
+

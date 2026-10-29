@@ -1,0 +1,276 @@
+table Customers
+	lineageTag: 8d34e08e-f79a-40a0-bf5e-b01b46366a5d
+
+	column customer_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 0986e66e-e9cd-412f-8d0a-b25abe05dfda
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_acct_num
+		dataType: int64
+		formatString: 0
+		lineageTag: c312c999-7390-4427-a87b-3faf522995e9
+		summarizeBy: sum
+		sourceColumn: customer_acct_num
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'full name'
+		dataType: string
+		lineageTag: 7055672e-763b-4418-acce-994d815c7648
+		summarizeBy: none
+		sourceColumn: full name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'House Number'
+		dataType: string
+		lineageTag: 9ce95246-b923-46e6-bf5d-d287e7001fe0
+		summarizeBy: none
+		sourceColumn: House Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'customer_address.2'
+		dataType: string
+		lineageTag: 82b6a059-98e0-4619-8a11-c64b6c4c0644
+		summarizeBy: none
+		sourceColumn: customer_address.2
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_city
+		dataType: string
+		lineageTag: 617be9ca-8fdf-485c-9ddc-6301208180cf
+		summarizeBy: none
+		sourceColumn: customer_city
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_state_province
+		dataType: string
+		lineageTag: 6624755d-c25a-4620-9e68-2828de7332d6
+		summarizeBy: none
+		sourceColumn: customer_state_province
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_postal_code
+		dataType: int64
+		formatString: 0
+		lineageTag: d453d397-ac90-4d9b-bfcf-2b811b6325ef
+		summarizeBy: sum
+		sourceColumn: customer_postal_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_country
+		dataType: string
+		lineageTag: 96de3dae-bcbd-4c9a-85d9-053b51761f26
+		summarizeBy: none
+		sourceColumn: customer_country
+
+		annotation SummarizationSetBy = Automatic
+
+	column birthdate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 8bc32ae0-ebd1-4405-823e-89248818be0d
+		summarizeBy: none
+		sourceColumn: birthdate
+
+		variation Variation
+			isDefault
+			relationship: 93d2f7a1-cd11-46bf-9f0b-fa60ddc7a001
+			defaultHierarchy: LocalDateTable_260d44de-2fb9-4f82-8a63-0af03ef09a22.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Year Birthday'
+		dataType: int64
+		formatString: 0
+		lineageTag: bc4a2d09-765d-473c-a436-9330fc808d88
+		summarizeBy: sum
+		sourceColumn: Year Birthday
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Bithday'
+		dataType: int64
+		formatString: 0
+		lineageTag: ce9044ca-eee6-41b5-a63e-753c824db568
+		summarizeBy: sum
+		sourceColumn: Month Bithday
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Day Bithday'
+		dataType: int64
+		formatString: 0
+		lineageTag: b8b4d74d-e542-40d4-8cdc-2d2b3c4329a1
+		summarizeBy: sum
+		sourceColumn: Day Bithday
+
+		annotation SummarizationSetBy = Automatic
+
+	column marital_status
+		dataType: string
+		lineageTag: 352bd62d-6c8c-4e2c-8a33-e8b6790f4b86
+		summarizeBy: none
+		sourceColumn: marital_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column yearly_income
+		dataType: string
+		lineageTag: 2b6aad6c-d9a9-4847-8e37-7f7b0b975096
+		summarizeBy: none
+		sourceColumn: yearly_income
+
+		annotation SummarizationSetBy = Automatic
+
+	column gender
+		dataType: string
+		lineageTag: 460c212e-16dc-4c51-8cbf-14741106110c
+		summarizeBy: none
+		sourceColumn: gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total Children'
+		dataType: string
+		lineageTag: 80a22ecc-938c-49d6-a120-eab7ef05c2ed
+		summarizeBy: none
+		sourceColumn: Total Children
+
+		annotation SummarizationSetBy = Automatic
+
+	column num_children_at_home
+		dataType: int64
+		formatString: 0
+		lineageTag: faa7ae9d-de17-4432-9828-1ae29d904f10
+		summarizeBy: sum
+		sourceColumn: num_children_at_home
+
+		annotation SummarizationSetBy = Automatic
+
+	column education
+		dataType: string
+		lineageTag: e3a64cd6-0760-4499-8c2d-0d99263f0130
+		summarizeBy: none
+		sourceColumn: education
+
+		annotation SummarizationSetBy = Automatic
+
+	column acct_open_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 32d0abf9-9739-47d8-8a3b-888f16dd8372
+		summarizeBy: none
+		sourceColumn: acct_open_date
+
+		variation Variation
+			isDefault
+			relationship: c1083b50-2e2b-4d76-9951-3d10539c58fd
+			defaultHierarchy: LocalDateTable_881d2900-1b30-49a4-892d-f05803a771cd.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column member_card
+		dataType: string
+		lineageTag: 0a02f530-80f0-4341-9fea-f50b797c4138
+		summarizeBy: none
+		sourceColumn: member_card
+
+		annotation SummarizationSetBy = Automatic
+
+	column occupation
+		dataType: string
+		lineageTag: 69c63e95-d6ca-482a-9010-fdfcc7d6e14f
+		summarizeBy: none
+		sourceColumn: occupation
+
+		annotation SummarizationSetBy = Automatic
+
+	column homeowner
+		dataType: string
+		lineageTag: 1db6df04-9df7-46db-89af-585849647ce4
+		summarizeBy: none
+		sourceColumn: homeowner
+
+		annotation SummarizationSetBy = Automatic
+
+	column Age
+		dataType: int64
+		formatString: 0
+		lineageTag: 4078ca68-34d4-4606-9e4c-7017e015ac3d
+		summarizeBy: sum
+		sourceColumn: Age
+
+		annotation SummarizationSetBy = Automatic
+
+	column Custom
+		dataType: string
+		lineageTag: 52e68386-0a96-4949-a143-216cd2acd2e9
+		summarizeBy: none
+		sourceColumn: Custom
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Customers = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\A-FF-L5-D15\Downloads\Maven+Market+CSV+Files\MavenMarket_Customers.csv"),[Delimiter=",", Columns=20, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"customer_id", Int64.Type}, {"customer_acct_num", Int64.Type}, {"first_name", type text}, {"last_name", type text}, {"customer_address", type text}, {"customer_city", type text}, {"customer_state_province", type text}, {"customer_postal_code", Int64.Type}, {"customer_country", type text}, {"birthdate", type date}, {"marital_status", type text}, {"yearly_income", type text}, {"gender", type text}, {"total_children", Int64.Type}, {"num_children_at_home", Int64.Type}, {"education", type text}, {"acct_open_date", type date}, {"member_card", type text}, {"occupation", type text}, {"homeowner", type text}}),
+				    #"Removed Errors" = Table.RemoveRowsWithErrors(#"Changed Type", {"customer_id"}),
+				    #"Removed Blank Rows" = Table.SelectRows(#"Removed Errors", each not List.IsEmpty(List.RemoveMatchingItems(Record.FieldValues(_), {"", null}))),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Blank Rows", {"customer_id"}),
+				    #"Merged Columns" = Table.CombineColumns(#"Removed Duplicates",{"first_name", "last_name"},Combiner.CombineTextByDelimiter(" ", QuoteStyle.None),"full name"),
+				    #"Inserted Year" = Table.AddColumn(#"Merged Columns", "Year", each Date.Year([birthdate]), Int64.Type),
+				    #"Reordered Columns" = Table.ReorderColumns(#"Inserted Year",{"customer_id", "customer_acct_num", "full name", "customer_address", "customer_city", "customer_state_province", "customer_postal_code", "customer_country", "birthdate", "Year", "marital_status", "yearly_income", "gender", "total_children", "num_children_at_home", "education", "acct_open_date", "member_card", "occupation", "homeowner"}),
+				    #"Inserted Start of Month" = Table.AddColumn(#"Reordered Columns", "Start of Month", each Date.StartOfMonth([birthdate]), type date),
+				    #"Reordered Columns1" = Table.ReorderColumns(#"Inserted Start of Month",{"customer_id", "customer_acct_num", "full name", "customer_address", "customer_city", "customer_state_province", "customer_postal_code", "customer_country", "birthdate", "Year", "Start of Month", "marital_status", "yearly_income", "gender", "total_children", "num_children_at_home", "education", "acct_open_date", "member_card", "occupation", "homeowner"}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Reordered Columns1",{"Start of Month"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"Year", "Yea birthday"}}),
+				    #"Inserted Month" = Table.AddColumn(#"Renamed Columns", "Month", each Date.Month([birthdate]), Int64.Type),
+				    #"Reordered Columns2" = Table.ReorderColumns(#"Inserted Month",{"customer_id", "customer_acct_num", "full name", "customer_address", "customer_city", "customer_state_province", "customer_postal_code", "customer_country", "birthdate", "Yea birthday", "Month", "marital_status", "yearly_income", "gender", "total_children", "num_children_at_home", "education", "acct_open_date", "member_card", "occupation", "homeowner"}),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Reordered Columns2",{{"Month", "Month bithday"}}),
+				    #"Inserted Day" = Table.AddColumn(#"Renamed Columns1", "Day", each Date.Day([birthdate]), Int64.Type),
+				    #"Reordered Columns3" = Table.ReorderColumns(#"Inserted Day",{"customer_id", "customer_acct_num", "full name", "customer_address", "customer_city", "customer_state_province", "customer_postal_code", "customer_country", "birthdate", "Yea birthday", "Month bithday", "Day", "marital_status", "yearly_income", "gender", "total_children", "num_children_at_home", "education", "acct_open_date", "member_card", "occupation", "homeowner"}),
+				    #"Renamed Columns2" = Table.RenameColumns(#"Reordered Columns3",{{"Day", "Day Bithday"}, {"Month bithday", "Month Bithday"}, {"Yea birthday", "Year Birthday"}}),
+				    #"Added Conditional Column" = Table.AddColumn(#"Renamed Columns2", "Custom", each if [total_children] > 0 then "Has Children" else "Not Has Children"),
+				    #"Renamed Columns3" = Table.RenameColumns(#"Added Conditional Column",{{"Custom", "Total Children"}}),
+				    #"Reordered Columns4" = Table.ReorderColumns(#"Renamed Columns3",{"customer_id", "customer_acct_num", "full name", "customer_address", "customer_city", "customer_state_province", "customer_postal_code", "customer_country", "birthdate", "Year Birthday", "Month Bithday", "Day Bithday", "marital_status", "yearly_income", "gender", "total_children", "Total Children", "num_children_at_home", "education", "acct_open_date", "member_card", "occupation", "homeowner"}),
+				    #"Removed Columns1" = Table.RemoveColumns(#"Reordered Columns4",{"total_children"}),
+				    #"Inserted Age" = Table.AddColumn(#"Removed Columns1", "Age", each Date.From(DateTime.LocalNow()) - [birthdate], type duration),
+				    #"Calculated Total Years" = Table.TransformColumns(#"Inserted Age",{{"Age", each Duration.TotalDays(_) / 365, type number}}),
+				    #"Rounded Off" = Table.TransformColumns(#"Calculated Total Years",{{"Age", each Number.Round(_, 1), type number}}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Rounded Off",{{"Age", Int64.Type}}),
+				    #"Split Column by Delimiter" = Table.SplitColumn(#"Changed Type1", "customer_address", Splitter.SplitTextByEachDelimiter({" "}, QuoteStyle.Csv, false), {"customer_address.1", "customer_address.2"}),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Split Column by Delimiter",{{"customer_address.1", type text}, {"customer_address.2", type text}}),
+				    #"Renamed Columns4" = Table.RenameColumns(#"Changed Type2",{{"customer_address.1", "House Number"}}),
+				    #"Added Conditional Column1" = Table.AddColumn(#"Renamed Columns4", "Custom", each if [Age] < 13 then "Adolescents" else if [Age] < 18 then "Adults" else "otherwise"),
+				    #"Filtered Rows" = Table.SelectRows(#"Added Conditional Column1", each true),
+				    #"Replaced Value" = Table.ReplaceValue(#"Filtered Rows","M","Married",Replacer.ReplaceText,{"marital_status"}),
+				    #"Replaced Value1" = Table.ReplaceValue(#"Replaced Value","S","Single",Replacer.ReplaceText,{"marital_status"}),
+				    #"Filtered Rows1" = Table.SelectRows(#"Replaced Value1", each true),
+				    #"Replaced Value2" = Table.ReplaceValue(#"Filtered Rows1","M","Male",Replacer.ReplaceText,{"gender"}),
+				    #"Replaced Value3" = Table.ReplaceValue(#"Replaced Value2","F","Female",Replacer.ReplaceText,{"gender"}),
+				    #"Filtered Rows2" = Table.SelectRows(#"Replaced Value3", each true)
+				in
+				    #"Filtered Rows2"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,76 @@
+expression Parameter1 = #"Sample File" meta [IsParameterQuery=true, BinaryIdentifier=#"Sample File", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: c1232500-f68d-455f-ad8e-89cb07cae498
+	queryGroup: 'Transform File from years\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Sample File' =
+		let
+		    Source = Folder.Files("C:\Users\A-FF-L5-D15\Downloads\Maven+Market+CSV+Files\years"),
+		    Navigation1 = Source{0}[Content]
+		in
+		    Navigation1
+	lineageTag: e94e8bb0-ac05-49ef-a739-65d1e4ec0098
+	queryGroup: 'Transform File from years\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform File' =
+		let
+		    Source = (Parameter1) => let
+		        Source = Csv.Document(Parameter1,[Delimiter=",", Columns=6, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		        #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true])
+		    in
+		        #"Promoted Headers"
+		in
+		    Source
+	lineageTag: 19b5dbf8-6bc3-4ac1-9558-67085fccb7ad
+	queryGroup: 'Transform File from years\Helper Queries'
+
+	annotation PBI_ResultType = Function
+
+expression Parameter2 = #"Sample File (2)" meta [IsParameterQuery=true, BinaryIdentifier=#"Sample File (2)", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: 52b446df-c9ec-44c8-9e2f-8b8aa64222dc
+	queryGroup: 'Transform File from years (2)\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Sample File (2)' =
+		let
+		    Source = Folder.Files("C:\Users\A-FF-L5-D15\Downloads\Maven+Market+CSV+Files\years"),
+		    Navigation1 = Source{0}[Content]
+		in
+		    Navigation1
+	lineageTag: d9c185b6-2b58-4a44-b24a-fec5461c9923
+	queryGroup: 'Transform File from years (2)\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform Sample File' =
+		let
+		    Source = Csv.Document(Parameter2,[Delimiter=",", Columns=6, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    #"Use First Row as Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+		    #"Change Type" = Table.TransformColumnTypes(#"Use First Row as Headers",{{"transaction_date", type date}, {"stock_date", type date}, {"product_id", Int64.Type}, {"customer_id", Int64.Type}, {"store_id", Int64.Type}, {"quantity", Int64.Type}})
+		in
+		    #"Change Type"
+	lineageTag: c0bcf96f-4aa0-445b-b8f1-24342efbabd4
+	queryGroup: 'Transform File from years (2)'
+
+	annotation PBI_ResultType = Table
+
+expression 'Transform File (2)' =
+		let
+		    Source = (Parameter2 as binary) => let
+		    Source = Csv.Document(Parameter2,[Delimiter=",", Columns=6, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    #"Use First Row as Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+		    #"Change Type" = Table.TransformColumnTypes(#"Use First Row as Headers",{{"transaction_date", type date}, {"stock_date", type date}, {"product_id", Int64.Type}, {"customer_id", Int64.Type}, {"store_id", Int64.Type}, {"quantity", Int64.Type}})
+		in
+		    #"Change Type"
+		in
+		    Source
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transform Sample File""}" ]
+	lineageTag: 9819dbef-3b7d-45c7-9759-848d4dd94d83
+	queryGroup: 'Transform File from years (2)\Helper Queries'
+
+	annotation PBI_ResultType = Function
+

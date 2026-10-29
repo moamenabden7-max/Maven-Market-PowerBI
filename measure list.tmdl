@@ -1,0 +1,137 @@
+table 'measure list'
+	lineageTag: 8da401b8-0a01-4f31-9385-c308199a50c8
+
+	measure 'Total cost' =
+			
+			SUMX(
+			    Transection,Transection[quantity] * RELATED(Products[product_cost]))
+		lineageTag: 2f428b40-498f-46fc-b0a9-7592f8647e17
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure profit =
+			
+			[Total Revenue] - [Total cost]
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 196fd594-3ac3-4ecc-87fe-6686bb1c09ce
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Profit Margin' =
+			
+			DIVIDE([profit],[Total Revenue])
+		formatString: \$#,0.000;(\$#,0.000);\$#,0.000
+		lineageTag: c1ea43cb-a7d5-47fb-9bf4-2dc0b6b0385d
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Total Returns' =
+			
+			SUM('Returns_1997-1998'[quantity]
+			)
+		formatString: #,0
+		lineageTag: e3c1e44d-3fa5-4232-ae22-ece4cc4b3575
+
+	measure 'Quantity Sold' =
+			
+			SUM(Transection[quantity])
+		formatString: #,0
+		lineageTag: e43da553-d3c8-4ce1-b272-35a365be97f7
+
+	measure 'Quantity Return' =
+			SUM(
+			    'Returns_1997-1998'[quantity])
+		formatString: #,0
+		lineageTag: d9dee216-3011-4633-83c2-abe68ff5fb1d
+
+	measure 'Return Rate' =
+			
+			[Quantity Return] / [Quantity Sold]
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 9f0accb6-ba21-4a08-b9d1-a954b4b3d65d
+
+	measure 'Total Orders' =
+			COUNTROWS(
+			    Transection)
+		formatString: 0
+		lineageTag: bf7ee8e9-d9f2-4232-b161-b022e93f2e32
+
+	measure 'Total Revenue' =
+			
+			SUMX(
+			    Transection,Transection[quantity] * RELATED(Products[Discount_Price]))
+		lineageTag: d3294b4b-d1eb-4fbb-b53f-b6e049a6a3b7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Lm Transection' = ```
+			
+			 CALCULATE(
+			    [Total Transectionn],
+			    DATEADD('Calendar'[date],
+			    -1,MONTH))
+			```
+		formatString: 0
+		lineageTag: 1052dc52-9d12-43f1-a5fe-a825d8a1897e
+
+	measure 'Total Transectionn' = ```
+			COUNTROWS
+			(
+			     Transection)
+			
+			
+			
+			```
+		formatString: #,0.00
+		lineageTag: 797a2be7-07bc-4bcc-84c3-cdeaa8eccfa7
+
+	measure 'Lm Profit' =
+			
+			CALCULATE(
+			    [profit],
+			    DATEADD('Calendar'[date],
+			    -1,MONTH))
+		lineageTag: 8c444f6e-20d8-4451-9570-f5ac86f3201e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Lm Return' =
+			CALCULATE(
+			    [Total Returns],
+			    DATEADD('Calendar'[date],
+			    -1,MONTH))
+		formatString: 0
+		lineageTag: 5d4417ed-2eb3-42cd-9353-2343d9c1a2e5
+
+	measure 'Lm Revenue' =
+			CALCULATE(
+			    [Total Revenue],
+			    DATEADD('Calendar'[date],
+			    -1,MONTH))
+		lineageTag: 5e7622d3-1017-4be5-add6-e5d70cb9d0c1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Monthly Revenue Target' =
+			
+			[Lm Revenue] * 1.05
+		formatString: 0
+		lineageTag: d9084a43-1c81-4fdd-9dff-e286fee52908
+
+	column Column
+		formatString: 0
+		lineageTag: 9b3b7161-dac4-4241-a839-e9fcf7ae142e
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'measure list' = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = 00617819af8d4f04acbe422a6428695b
+
+	annotation 436ba87b-9c83-4389-a31b-ebd06a36be98 = {"Expression":""}
+

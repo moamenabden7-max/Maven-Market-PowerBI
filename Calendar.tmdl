@@ -1,0 +1,127 @@
+table Calendar
+	lineageTag: 52d55fde-d882-4b97-bb78-f80893094a5b
+
+	column date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: b786b1ca-154a-441d-aa83-846465111482
+		summarizeBy: none
+		sourceColumn: date
+
+		variation Variation
+			isDefault
+			relationship: fcae6bf9-3e9d-4021-b877-2bcb80975c3a
+			defaultHierarchy: LocalDateTable_55d94fe2-d372-4fb7-a2a5-0b61846ea452.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Day Name'
+		dataType: string
+		lineageTag: ca8c66ed-2f7f-4564-a174-3b464a185866
+		summarizeBy: none
+		sourceColumn: Day Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Name'
+		dataType: string
+		lineageTag: 216b5d45-a176-4094-bac5-54e862bfbacc
+		summarizeBy: none
+		sourceColumn: Month Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Start of Month'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 78620579-c4c9-478c-b588-199cc6f30982
+		summarizeBy: none
+		sourceColumn: Start of Month
+
+		variation Variation
+			isDefault
+			relationship: daa13ba9-92fc-4266-9c75-e35adb6cbeb4
+			defaultHierarchy: LocalDateTable_5919b417-8207-4521-ba54-02995288226a.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Start of Week'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f74e0c2b-0aca-4e9a-8767-c300991ccf4e
+		summarizeBy: none
+		sourceColumn: Start of Week
+
+		variation Variation
+			isDefault
+			relationship: 4f828db9-9f8c-4394-9710-97da2b09a4e2
+			defaultHierarchy: LocalDateTable_daa6c4d7-45dc-445c-bacb-bdaa98a031cd.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Quarter
+		dataType: int64
+		formatString: 0
+		lineageTag: 0524d51f-918c-4a5d-9cb4-5a23af8ad947
+		summarizeBy: sum
+		sourceColumn: Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: f0ff5ea1-20e8-4d54-9dd6-01b44c86b6b1
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'End of Year'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 724d9d05-5ac0-4e11-b5d9-2dfa4b1f4d5b
+		summarizeBy: none
+		sourceColumn: End of Year
+
+		variation Variation
+			isDefault
+			relationship: 59c600e1-7511-429b-99c1-3f9c564d502c
+			defaultHierarchy: LocalDateTable_8aa2f076-794d-4fc6-bcaf-c8245e99b3a8.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition Calendar = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\A-FF-L5-D15\Downloads\Maven+Market+CSV+Files\MavenMarket_Calendar.csv"),[Delimiter=",", Columns=1, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"date", type date}}),
+				    #"Removed Errors" = Table.RemoveRowsWithErrors(#"Changed Type", {"date"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Errors"),
+				    #"Removed Blank Rows" = Table.SelectRows(#"Removed Duplicates", each not List.IsEmpty(List.RemoveMatchingItems(Record.FieldValues(_), {"", null}))),
+				    #"Inserted Day Name" = Table.AddColumn(#"Removed Blank Rows", "Day Name", each Date.DayOfWeekName([date]), type text),
+				    #"Inserted Month Name" = Table.AddColumn(#"Inserted Day Name", "Month Name", each Date.MonthName([date]), type text),
+				    #"Inserted Start of Month" = Table.AddColumn(#"Inserted Month Name", "Start of Month", each Date.StartOfMonth([date]), type date),
+				    #"Inserted Start of Week" = Table.AddColumn(#"Inserted Start of Month", "Start of Week", each Date.StartOfWeek([Start of Month]), type date),
+				    #"Inserted Quarter" = Table.AddColumn(#"Inserted Start of Week", "Quarter", each Date.QuarterOfYear([date]), Int64.Type),
+				    #"Inserted Start of Year" = Table.AddColumn(#"Inserted Quarter", "Start of Year", each Date.StartOfYear([date]), type date),
+				    #"Removed Columns" = Table.RemoveColumns(#"Inserted Start of Year",{"Start of Year"}),
+				    #"Inserted Year" = Table.AddColumn(#"Removed Columns", "Year", each Date.Year([date]), Int64.Type),
+				    #"Inserted End of Year" = Table.AddColumn(#"Inserted Year", "End of Year", each Date.EndOfYear([date]), type date)
+				in
+				    #"Inserted End of Year"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

@@ -1,0 +1,124 @@
+table Products
+	lineageTag: 2b825fa9-26eb-4835-aa00-a10e663f16cc
+
+	column product_id
+		dataType: int64
+		formatString: 0
+		lineageTag: b484b58a-ddf0-42c6-97d9-71a91b4987e8
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_brand
+		dataType: string
+		lineageTag: 100ca494-d378-4d0e-b0a4-71b9c4e65a0e
+		summarizeBy: none
+		sourceColumn: product_brand
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_name
+		dataType: string
+		lineageTag: 32b374be-d985-4248-a534-1243115a11ab
+		summarizeBy: none
+		sourceColumn: product_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_sku
+		dataType: int64
+		formatString: 0
+		lineageTag: fa420c8b-d99f-442d-933d-ebd99816896b
+		summarizeBy: sum
+		sourceColumn: product_sku
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_retail_price
+		dataType: double
+		lineageTag: 37b877d8-4f3c-4ef8-a521-0f465f73637f
+		summarizeBy: sum
+		sourceColumn: product_retail_price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column product_cost
+		dataType: double
+		lineageTag: ac0d911e-2a8b-4ab1-bad5-8edc02e1579c
+		summarizeBy: sum
+		sourceColumn: product_cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column product_weight
+		dataType: double
+		lineageTag: 566f69a5-01bd-4840-921f-87b0a7c6f284
+		summarizeBy: sum
+		sourceColumn: product_weight
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column recyclable
+		dataType: double
+		lineageTag: 24755b59-3d29-4b48-ac81-b1240fb24439
+		summarizeBy: sum
+		sourceColumn: recyclable
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column low_fat
+		dataType: double
+		lineageTag: ed8dce58-5a9b-49b0-bf5d-091d374ac9aa
+		summarizeBy: sum
+		sourceColumn: low_fat
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Discount_Price
+		dataType: string
+		lineageTag: 93241e33-618a-4b36-b8a8-3613ee7f556d
+		summarizeBy: none
+		sourceColumn: Discount_Price
+
+		annotation SummarizationSetBy = Automatic
+
+	column Price_Tier
+		dataType: string
+		lineageTag: 31af02e9-45eb-4375-a72b-2570632fb0fe
+		summarizeBy: none
+		sourceColumn: Price_Tier
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Products = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\A-FF-L5-D15\Downloads\Maven+Market+CSV+Files\MavenMarket_Products.csv"),[Delimiter=",", Columns=9, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"product_id", Int64.Type}, {"product_brand", type text}, {"product_name", type text}, {"product_sku", Int64.Type}, {"product_retail_price", type number}, {"product_cost", type number}, {"product_weight", type number}, {"recyclable", Int64.Type}, {"low_fat", Int64.Type}}),
+				    #"Removed Errors" = Table.RemoveRowsWithErrors(#"Changed Type", {"product_id"}),
+				    #"Removed Blank Rows" = Table.SelectRows(#"Removed Errors", each not List.IsEmpty(List.RemoveMatchingItems(Record.FieldValues(_), {"", null}))),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Blank Rows", {"product_id"}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Removed Duplicates",null,0,Replacer.ReplaceValue,{"recyclable"}),
+				    #"Replaced Value1" = Table.ReplaceValue(#"Replaced Value",null,0,Replacer.ReplaceValue,{"low_fat"}),
+				    #"Added Custom" = Table.AddColumn(#"Replaced Value1", "Discount_Price", each [product_retail_price] * 0.9),
+				    #"Added Conditional Column" = Table.AddColumn(#"Added Custom", "Price_Tier", each if [Discount_Price] > 3 then "High" else if [Discount_Price] > 1 then "mid" else "low")
+				in
+				    #"Added Conditional Column"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

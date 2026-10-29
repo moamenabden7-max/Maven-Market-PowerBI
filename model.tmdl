@@ -1,0 +1,50 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+queryGroup 'Transform File from years'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from years\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from years (2)'
+
+	annotation PBI_QueryGroupOrder = 2
+
+queryGroup 'Transform File from years (2)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+annotation PBI_QueryOrder = ["Customers","Products","Stores","Calendar","Regions","Returns_1997-1998","Sample File","Parameter1","Transform File","Transection","Sample File (2)","Parameter2","Transform Sample File","Transform File (2)"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table Calendar
+ref table DateTableTemplate_93bf487c-bc71-4bce-a4ba-dbf92b626241
+ref table Customers
+ref table LocalDateTable_260d44de-2fb9-4f82-8a63-0af03ef09a22
+ref table LocalDateTable_881d2900-1b30-49a4-892d-f05803a771cd
+ref table Products
+ref table Regions
+ref table Returns_1997-1998
+ref table Stores
+ref table LocalDateTable_55fc1391-006e-4a69-bdcc-e6a248ffa7f7
+ref table LocalDateTable_9c04c3aa-e38f-43b5-904b-de0caec04ba0
+ref table LocalDateTable_5919b417-8207-4521-ba54-02995288226a
+ref table LocalDateTable_daa6c4d7-45dc-445c-bacb-bdaa98a031cd
+ref table LocalDateTable_8aa2f076-794d-4fc6-bcaf-c8245e99b3a8
+ref table Transection
+ref table LocalDateTable_55d94fe2-d372-4fb7-a2a5-0b61846ea452
+ref table 'measure list'
+
+ref cultureInfo en-US
+
