@@ -1,0 +1,9 @@
+// PROPOSED REPLACEMENT — NOT APPLIED TO THE PBIX.
+// Select the existing Return Rate measure in Desktop and replace its formula.
+Return Rate = DIVIDE([Quantity Return], [Quantity Sold])
+
+// NEW measure. Use for gauge maximum; Monthly Revenue Target is the target marker.
+Revenue Gauge Maximum = MAX([Total Revenue], [Monthly Revenue Target]) * 1.2
+
+// NEW optional alias. Existing Total Orders counts transaction rows, not order IDs.
+Transaction Rows = COUNTROWS(Transection)
