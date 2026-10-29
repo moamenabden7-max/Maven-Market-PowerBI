@@ -1,5 +1,9 @@
 # Maven Market Retail Analysis
 
+**Power BI portfolio project · Retail analytics**
+
+[Download the Power BI report](./maven%20market.pbix) · [View AdventureWorks Sales Analysis](https://github.com/moamenabden7-max/AdventureWorks-Sales-PowerBI)
+
 Power BI analysis of retail sales and returns across products, customers, dates, and locations. The report uses a single interactive overview page.
 
 ## Business questions
@@ -23,7 +27,11 @@ The working source files include sales data for 2017 and 2018, returns, products
 
 ## How to open
 
-Download `maven market.pbix` and open it with Power BI Desktop. The report contains an embedded data model; refreshing may require updated source settings.
+1. Open the [Power BI report file](./maven%20market.pbix) and select **Download raw file** on GitHub.
+2. Open the downloaded `.pbix` file with **Power BI Desktop**.
+3. Explore the report using the date and country slicers.
+
+The report contains an embedded data model. Refreshing may require updated source settings and access to the original data files; those source files are not included in this repository.
 
 ## Tools
 
@@ -34,9 +42,9 @@ Power BI · Power Query · DAX · Excel/CSV
 - `README.md` — project summary and report guide.
 - `maven market.pbix` — Power BI report and embedded model.
 
-A dashboard screenshot can be added once exported from Power BI Desktop.
+## Validation scope
 
-The visual layout and field references were checked from the report file. Numerical findings and refresh behavior have not been independently verified here. Sample source files should be included only if their license permits redistribution.
+The existing project documentation records a check of report layout and field references. Numerical findings and data refresh have not been independently validated.
 
 ## Author
 
